@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"os"
 	"pgx_plg/plugins/configs"
 	router "pgx_plg/routers/v1"
@@ -14,7 +13,6 @@ import (
 
 func main() {
 	conn := configs.ConnectDb()
-	fmt.Println("c:", conn)
 	defer conn.Close(context.Background())
 	server := gin.Default()
 	server.Use(cors.New(cors.Config{
