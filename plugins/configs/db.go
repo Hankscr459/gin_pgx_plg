@@ -16,14 +16,18 @@ import (
 	_ "github.com/jackc/pgx/v5"
 )
 
-func ConnectDb() *pgx.Conn {
-	conn, err := pgx.Connect(context.Background(), os.Getenv("PostgresURI"))
+func ConnectDb() (*pgx.Conn, error) {
+	ctx := context.Background()
+	conn, err := pgx.Connect(ctx, os.Getenv("PostgresURI"))
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Unable to connect to database: %v\n", err)
-		os.Exit(1)
+		// os.Exit(1)
+		return nil, err
 	}
-	return conn
-	// defer conn.Close(context.Background())
+	if err := conn.Ping(ctx); err != nil {
+		return nil, err
+	}
+	return conn, nil
 }
 
 func Migrate() error {

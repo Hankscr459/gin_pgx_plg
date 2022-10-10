@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"log"
 	"os"
 	"pgx_plg/plugins/configs"
 	router "pgx_plg/routers/v1"
@@ -12,7 +13,11 @@ import (
 )
 
 func main() {
-	conn := configs.ConnectDb()
+	conn, err := configs.ConnectDb()
+	if err != nil {
+		log.Fatal("Fail to connect DB")
+		return
+	}
 	defer conn.Close(context.Background())
 	server := gin.Default()
 	server.Use(cors.New(cors.Config{
