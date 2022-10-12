@@ -1,0 +1,12 @@
+version: 1
+packages:
+  - path: "./plugins/configs/database"
+    name: "db"
+    engine: "postgresql"
+    schema: "./plugins/configs/database/migrations/"
+    queries: "./plugins/configs/database/query/"
+    emit_json_tags: true
+    emit_prepared_queries: false
+    emit_interface: true
+    emit_exact_table_names: false
+    emit_empty_slices: true
