@@ -1,7 +1,7 @@
 version: 1
 packages:
   - path: "./plugins/configs/database"
-    name: "db"
+    name: "sqlc"
     engine: "postgresql"
     schema: "./plugins/configs/database/migrations/"
     queries: "./plugins/configs/database/query/"
