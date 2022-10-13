@@ -1,6 +1,6 @@
 version: 1
 packages:
-  - path: "./plugins/configs/database"
+  - path: "./plugins/configs/database/sqlc"
     name: "sqlc"
     engine: "postgresql"
     schema: "./plugins/configs/database/migrations/"
